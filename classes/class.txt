@@ -1,0 +1,48 @@
+    <div class='chosenMeal'></div>
+    <!-- <button type='button' class='btn btn-danger' id='clearAll'>CLEAR ALL</button> -->
+
+    <script>
+    let container = document.querySelector('.chosenMeal');
+    let clear = document.getElementById('clearAll');
+    if (container.innerText == ''){
+        clear.classList.add('hidden');
+    } 
+    let addToCart = document.getElementById('addToCart');
+
+    // display added to cart
+        
+    function createMeal(){
+        let select = document.getElementById('select');
+        let y = select.options[select.selectedIndex];
+
+        let p = document.createElement('p');
+        p.innerHTML = y.innerHTML;
+        p.classList.add('addedMealP');
+        p.setAttribute('id', y.innerText);
+        p.style.display = 'inline';
+        
+        let remove = document.createElement('button');
+        remove.classList.add('remove', 'btn', 'btn-danger');
+        remove.innerHTML = 'REMOVE';
+        remove.onclick = function (){
+            container.removeChild(divBox);
+        }
+        
+        let divBox = document.createElement('div');
+        divBox.classList.add('addedMealP');
+        divBox.setAttribute('id', y.innerText);
+        divBox.appendChild(p);
+        divBox.appendChild(remove);
+
+        container.appendChild(divBox);
+    }
+
+    addToCart.addEventListener('click', createMeal);
+
+    clear.addEventListener('click', function(){
+        while(container.firstChild){
+        container.removeChild(container.firstChild);
+        }
+    })
+    </script>
+    ";
